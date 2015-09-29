@@ -15,6 +15,6 @@
             </MenuItem>
 
         </Menu>
-        <TextBox x:Name="textBoxEditor" Margin="0,22,10,10" HorizontalAlignment="Right" Width="497" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"/>
+        <TextBox x:Name="textBoxEditor" Margin="0,22,10,10" HorizontalAlignment="Right" Width="497" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto" TextChanged="textBoxEditor_TextChanged"/>
     </Grid>
 </Window>
