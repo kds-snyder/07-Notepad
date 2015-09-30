@@ -24,13 +24,18 @@ namespace Notepad
     public partial class MainWindow : Window
     {
         public static string fileName = ""; // file name
+        public static string fileNameWithoutPath = ""; 
+
         public static bool textEditorChanged = false; // Keep track text changed
         public static string fileNameFilter = 
             "Text files (*.txt)|*.txt";
+        public static string projectTitle = "NotePad Project";
+        public static string projectTitleFilePrefix = " -- File: ";
 
         public MainWindow()
         {
-            InitializeComponent();           
+            InitializeComponent();
+            this.Title = projectTitle;         
         }
 
         // Open file 
@@ -138,9 +143,12 @@ namespace Notepad
                 if (openFileResult == true)
                 {
                     fileName = openDialog.FileName;
+                    fileNameWithoutPath = openDialog.SafeFileName;
                     textBoxEditor.Text =
                         File.ReadAllText(fileName);
                     textEditorChanged = false;
+                    this.Title = projectTitle + 
+                        projectTitleFilePrefix + fileNameWithoutPath;
                 }
             }
             catch (Exception except)
@@ -167,6 +175,7 @@ namespace Notepad
                     if (saveFileResult == true)
                     {
                         fileName = saveDialog.FileName;
+                        fileNameWithoutPath = saveDialog.SafeFileName;
                     }
                 }
                 saveTextEditor();
@@ -185,6 +194,8 @@ namespace Notepad
             {
                 File.WriteAllText(fileName, textBoxEditor.Text);
                 textEditorChanged = false;
+                this.Title = projectTitle + 
+                    projectTitleFilePrefix + fileNameWithoutPath;
                 MessageBox.Show(fileName + " has been saved");
             }
             catch (Exception except)
